@@ -249,8 +249,8 @@
 /* Reset + base */
 /* Reset + base */
 html,body{height:100%;margin:0;background:var(--bg);font-family:Inter,system-ui,Segoe UI,Arial; color:#111;padding-top:70px;padding-bottom:60px;}  /* Desktop: reduced from 80px */
-.wrap{max-width:1400px;margin:28px auto;padding:28px;display:grid;grid-template-columns: 1fr 500px;gap:var(--panel-gap);}
-@media (max-width: 980px){ .wrap{grid-template-columns:1fr; padding:16px;} }
+.wrap{max-width:1400px;margin:24px auto;padding:28px;display:grid;grid-template-columns: 1fr 500px;gap:var(--panel-gap);}
+@media (max-width: 980px){ .wrap{grid-template-columns:1fr; padding:16px; margin:20px auto;} }
 
 /* --------------------------
 Left SVG panel
@@ -1764,7 +1764,7 @@ color:var(--muted);
     .lecture-objective-content {
         font-size: 10px;
         line-height: 1.5;
-    }
+    } 
     
     .lecture-objective-content p {
         font-size: 10px;
@@ -1784,6 +1784,90 @@ color:var(--muted);
     .lecture-objective-list li:before {
         left: 5px;
         font-size: 10px;
+    }
+}
+
+/* Video Container Styling */
+.video-container {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 24px rgba(16, 24, 40, 0.06);
+    max-width: 1400px;
+    width: calc(100% - 56px);
+    margin: 24px auto;
+    border: 1px solid #f0f0f0;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Desktop - match .wrap width AND make video TALLER */
+@media (min-width: 980px) {
+    .video-container {
+        max-width: 1400px;
+        width: calc(100% - 56px);
+        margin: 24px auto;
+    }
+    
+    .video-container iframe {
+        height: 650px;  /* INCREASED from 450px to 650px for desktop */
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 980px) {
+    .video-container {
+        width: calc(100% - 32px);
+        padding: 16px;
+        margin: 20px auto;
+    }
+    
+    .video-container iframe {
+        height: 400px;
+    }
+}
+
+/* Mobile portrait */
+@media (max-width: 768px) {
+    .video-container {
+        width: calc(100% - 32px);
+        padding: 14px;
+        margin: 18px auto;
+    }
+    
+    .video-container iframe {
+        height: 300px;
+    }
+}
+
+/* iPhone mode - proper spacing and sizing */
+@media (max-width: 430px) {
+    .video-container {
+        width: calc(100% - 32px);
+        padding: 12px;
+        margin: 16px auto;
+        border-radius: 10px;
+    }
+    
+    .video-container iframe {
+        height: 220px;
+        border-radius: 6px;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 375px) {
+    .video-container iframe {
+        height: 200px;
     }
 }
 
@@ -2428,18 +2512,15 @@ color:var(--muted);
 </div>
   
   
-  <!-- YouTube Video Container -->
-<div class="video-container-wrapper">
-    <h2 class="video-container-title">Video Lecture</h2>
-    <div class="video-responsive">
-        <iframe 
-            src="https://www.youtube.com/watch?v=Jx4kl2fVQ0U" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </div>
+<!-- Video Container -->
+<div class="video-container">
+    <iframe 
+        src="https://www.youtube-nocookie.com/embed/Jx4kl2fVQ0U" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
 </div>
-  
   
   
   
