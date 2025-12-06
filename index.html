@@ -272,6 +272,34 @@ overflow:hidden;
 min-height: 300px;
 }
 
+/* IMAGE DISPLAY STYLING */
+#stepImage {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Desktop: Larger image display */
+@media (min-width: 981px) {
+  #stepImage {
+    max-height: 320px;
+  }
+}
+
+/* iPhone mode: Fit image properly */
+@media (max-width: 430px) {
+  #stepImage {
+    max-height: 140px;
+    border-radius: 6px;
+  }
+}  
+  
+  
 #demoSVG {
     width: 100%;
     height: 280px;
@@ -385,15 +413,20 @@ Right steps panel
 .steps-panel{background:#fff;border-radius:12px;padding:20px;box-shadow:0 6px 24px rgba(16,24,40,0.06);display:flex;flex-direction:column;gap:12px;}
 .step-window{background:var(--step-bg);border-radius:10px;padding:20px;border:1px solid #eef2f7;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px;position:relative;overflow:hidden;}
 .step-text{
-  font-size: 18px;
-  font-weight: 700;
-  color: #0b2546;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #000000;
   margin-bottom: 8px;
+  letter-spacing: -0.05em;
+  line-height: 1.25;
 }
 .sub{
-  font-size: 14px;
-  color: #6b7280;
-  line-height: 1.5;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #464e5a;
+  line-height: 1.6;
 }
 
 /* Desktop only: Make the panels taller */
@@ -416,6 +449,32 @@ Right steps panel
 .hint{font-size:13px;color:var(--muted);}
 
 .right-controls{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:8px;}
+  /* Step counter black box styling */
+.right-controls #progress {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 13px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.right-controls #progress strong {
+    color: #ffffff;
+}
+
+.right-controls #progress span {
+    color: #ffffff;
+}
+
+/* iPhone mode adjustments */
+@media (max-width: 430px) {
+    .right-controls #progress {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
 .toggles{display:flex;gap:8px;}
 .pill{padding:6px 10px;border-radius:999px;border:1px solid #e6eefb;background:#fff;font-weight:700;cursor:pointer;}
 .pill.active{background:var(--accent);color:#fff;border-color:var(--accent);}
@@ -1693,22 +1752,22 @@ color:var(--muted);
 @media (max-width: 430px) {
     .lecture-objective-box {
         padding: 18px 14px;
-        margin: -60px auto 16px auto;  /* Changed from -20px to -50px to move it up */
+        margin: -60px auto 16px auto;
     }
     
     .lecture-objective-title {
-        font-size: 21px;  /* 32px × 0.65 = ~21px */
+        font-size: 21px;
         margin: 0 0 10px 0;
         letter-spacing: -0.07em;
     }
     
     .lecture-objective-content {
-        font-size: 10px;   /* 16px × 0.65 = ~10px */
+        font-size: 10px;
         line-height: 1.5;
     }
     
     .lecture-objective-content p {
-        font-size: 10px;   /* Matches content size */
+        font-size: 10px;
         margin: 0 0 5px 0 !important;
     }
     
@@ -1717,7 +1776,7 @@ color:var(--muted);
     }
     
     .lecture-objective-list li {
-        font-size: 10px;   /* 16px × 0.65 = ~10px */
+        font-size: 10px;
         padding-left: 16px;
         margin-bottom: 5px;
     }
@@ -1725,6 +1784,86 @@ color:var(--muted);
     .lecture-objective-list li:before {
         left: 5px;
         font-size: 10px;
+    }
+}
+
+/* ========== ADD YOUTUBE CSS HERE ========== */
+/* YouTube Video Container */
+.video-container-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 24px rgba(16, 24, 40, 0.06);
+    max-width: 1400px;
+    width: calc(100% - 56px);
+    margin: 0 auto 24px auto;
+    border: 1px solid #f0f0f0;
+    box-sizing: border-box;
+}
+
+.video-container-title {
+    font-family: 'Crimson Text', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    letter-spacing: -0.07em;
+    line-height: 1.2;
+    margin: 0 0 16px 0;
+    text-align: center;
+}
+
+.video-responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #000;
+}
+
+.video-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 8px;
+}
+
+/* Mobile adjustments for video container */
+@media (max-width: 980px) {
+    .video-container-wrapper {
+        width: calc(100% - 32px);
+        padding: 16px;
+    }
+    
+    .video-container-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .video-container-wrapper {
+        width: calc(100% - 32px);
+        padding: 14px;
+    }
+}
+
+/* iPhone mode - Make container smaller and move up */
+@media (max-width: 430px) {
+    .video-container-wrapper {
+        padding: 14px;
+        margin: -50px auto 16px auto;
+    }
+    
+    .video-container-title {
+        font-size: 16px;
+        margin: 0 0 12px 0;
+    }
+    
+    .video-responsive {
+        border-radius: 6px;
     }
 }
   
@@ -2287,6 +2426,23 @@ color:var(--muted);
         </div>
     </div>
 </div>
+  
+  
+  <!-- YouTube Video Container -->
+<div class="video-container-wrapper">
+    <h2 class="video-container-title">Video Lecture</h2>
+    <div class="video-responsive">
+        <iframe 
+            src="https://www.youtube.com/watch?v=Jx4kl2fVQ0U" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+  
+  
+  
+  
 
 <!-- ===== PROGRESS BAR AT TOP ===== -->
 <div class="sticky-progress-bar">
@@ -2318,7 +2474,31 @@ color:var(--muted);
     </div>
 
 <div class="canvas" id="canvas">
-<svg id="demoSVG" viewBox="0 0 800 280" width="100%" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
+  <!-- IMAGE CONTAINER -->
+  <div id="stepImageContainer" style="
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    box-sizing: border-box;
+  ">
+    <img id="stepImage" src="" alt="Step illustration" style="
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      display: none;
+    ">
+  </div>
+
+<svg id="demoSVG" viewBox="0 0 800 280" width="100%" preserveAspectRatio="xMidYMin meet" aria-hidden="true" style="display: none;">
     <!-- TOP: Question - ABSOLUTELY LOCKED at top -->
     <g id="g-question" class="fade visible" transform="translate(30,25)">
       <text x="0" y="0" font-size="16" fill="#0b2546" font-weight="700" class="question-label">Question:</text>
@@ -2328,18 +2508,9 @@ color:var(--muted);
     <!-- Horizontal divider line - MOVED DOWN MORE -->
     <line x1="30" y1="130" x2="770" y2="130" stroke="#e2e8f0" stroke-width="1.5" opacity="0.5"/>
 
-    <!-- BOTTOM: Numbers and visual elements -->
-    <g id="g-visual" transform="translate(40,200)">
-      <!-- Circle with number -->
-      <circle id="dotA" cx="60" cy="30" r="24" fill="#eef6ff" stroke="#cfe4ff" stroke-width="2" class="fade"></circle>
-      <text id="dotAText" x="60" y="39" text-anchor="middle" font-size="20" fill="#1d4a8c" font-weight="700" class="fade variable-text">2</text>
-
-      <!-- Rectangle with number -->
-      <rect id="rectB" x="140" y="6" width="110" height="48" rx="8" fill="#fff3e0" stroke="#ffb74d" stroke-width="2" class="fade"></rect>
-      <text id="rectBText" x="195" y="37" text-anchor="middle" font-size="20" fill="#e65100" font-weight="700" class="fade variable-text">3</text>
-
-      <!-- Final answer (numbers only) -->
-      <text id="finalText" x="300" y="37" font-size="20" fill="#065f46" font-weight="800" class="fade variable-text"></text>
+<!-- BOTTOM: Numbers and visual elements -->
+    <g id="g-visual" transform="translate(40,200)" style="display: none;">
+      <!-- Hidden - not needed for HCF lecture -->
     </g>
 
     <!-- Expression box on the right side -->
@@ -2391,10 +2562,10 @@ color:var(--muted);
   <div class="steps-panel" aria-label="Steps panel">
     <div style="display:flex;justify-content:space-between;align-items:center;">
       <div style="font-family: 'Crimson Text', serif; font-weight: 700; font-size: 22px; letter-spacing: -0.09em; line-height: 1.2; color: #000000;">Step-by-step explanation</div>
-      <div class="toggles" role="tablist" aria-label="Method selector">
-        <div id="methodLayer" class="pill active" data-method="layering" role="tab" aria-selected="true" tabindex="0">Layering</div>
-        <div id="methodReverse" class="pill" data-method="reverse" role="tab" aria-selected="false" tabindex="0">Reverse</div>
-      </div>
+
+      <div class="toggles" role="tablist" aria-label="Method selector" style="display: none;">
+  <div id="methodLayer" class="pill active" data-method="layering" role="tab" aria-selected="true" tabindex="0">Layering</div>
+</div>
     </div>
 
 <div class="step-window" id="stepWindow" aria-live="polite">
@@ -2728,99 +2899,84 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-    
-    
-  
-  
 const DATA = {
   1: {
     label: 'HCF using factor lists',
-    layering: [
+    steps: [
       {
-        text: 'List the factors of each number',
-        sub: 'Write down all the numbers that go into it exactly — no remainders left. Then do the same for your second number.',
-        svgAction: 'showQuestion'
-      },
-      {
-        text: 'Circle the numbers they both have',
-        sub: 'Look at both lists and circle the numbers that appear in both. These are your common factors.',
-        svgAction: 'highlightFactors'
-      },
-      {
-        text: 'Pick the biggest number',
-        sub: 'The highest number that appears in both lists is your Highest Common Factor — that\'s the one we want.',
-        svgAction: 'showFactors'
-      }
-    ],
-    reverse: [
-      {
-        text: 'Pick the biggest number',
-        sub: 'The highest number that appears in both lists is your Highest Common Factor — that\'s the one we want.',
-        svgAction: 'showFactors'
-      },
-      {
-        text: 'Circle the numbers they both have',
-        sub: 'Look at both lists and circle the numbers that appear in both. These are your common factors.',
-        svgAction: 'highlightFactors'
+        text: 'Find the Highest Common Factor (HCF) of 18 and 24',
+        sub: '',
+        svgAction: 'showQuestion',
+        imageUrl: 'https://i.postimg.cc/yYZ1wnrn/Find-the-hcf.jpg'
       },
       {
         text: 'List the factors of each number',
-        sub: 'Write down all the numbers that go into it exactly — no remainders left. Then do the same for your second number.',
-        svgAction: 'showQuestion'
+        sub: 'Write down all the numbers that go into it exactly — without any remainders left.',
+        svgAction: 'showFactorLists',
+        imageUrl: 'https://i.postimg.cc/x8TnCJMN/21.jpg'
+      },
+      {
+        text: 'Then do the same for your second number',
+        sub: '',
+        svgAction: 'showSecondNumber',
+        imageUrl: 'https://i.postimg.cc/SsxvYW1y/22.jpg'
+      },
+      {
+        text: 'Circle the numbers they both have',
+        sub: 'Look at both lists and circle the numbers that appear in both lists.\n\nThese are your common factors.',
+        svgAction: 'highlightCommonFactors',
+        imageUrl: 'https://i.postimg.cc/Bnf7BW7N/23.jpg'
+      },
+      {
+        text: 'Pick the biggest number',
+        sub: 'The biggest number that appears in both lists is your Highest Common Factor — that\'s the one we want.',
+        svgAction: 'showHCF',
+        imageUrl: 'https://i.postimg.cc/RZvyz57k/24.jpg',
+        endSlide: {
+          text: 'The HCF of 18 and 24 is 6',
+          sub: ''
+        }
       }
     ]
   },
 
   2: {
     label: 'Solve linear eqn',
-    layering: [
-      {text: 'Equation: 3x + 6 = 15', sub: '', svgAction: 'showQuestion2'},
-      {text: 'Subtract 6 both sides → 3x = 9', sub: '', svgAction: 'isolate'},
-      {text: 'Divide both sides by 3 → x = 3', sub: '', svgAction: 'finalOk'}
-    ],
-    reverse: [
-      {text: 'Answer is x = 3 (given)', sub: '', svgAction: 'finalOk'},
-      {text: 'Multiply: 3x = 9', sub: '', svgAction: 'isolate'},
-      {text: 'Add 6 to both sides to get 3x + 6 = 15', sub: '', svgAction: 'showQuestion2'}
-    ]
-  },
-
-  3: {
-    label: 'Area: rectangle → parallelogram link',
-    layering: [
-      {text: 'Rectangle area = base × height', sub: '', svgAction: 'showRect'},
-      {text: 'Parallelogram has same formula if height used', sub: '', svgAction: 'parallelogram'},
-      {text: 'Visualise base unchanged; height is perpendicular', sub: '', svgAction: 'finalOk'}
-    ],
-    reverse: [
-      {text: 'If area = base × height, many shapes share formula', sub: '', svgAction: 'showRect'},
-      {text: 'Parallelogram result suggests perpendicular height', sub: '', svgAction: 'parallelogram'},
-      {text: 'Therefore confirm which height to use', sub: '', svgAction: 'finalOk'}
-    ]
-  },
-
-  4: {
-    label: 'Pythagoras visual',
-    layering: [
-      {text: 'Identify right triangle and sides', sub: '', svgAction: 'showQuestionPyth'},
-      {text: 'Square the side lengths and compare', sub: '', svgAction: 'pythSquares'},
-      {text: 'Conclude a² + b² = c²', sub: '', svgAction: 'finalOk'}
-    ],
-    reverse: [
-      {text: 'Given c, find a or b by rearrangement', sub: '', svgAction: 'pythSquares'},
-      {text: 'Compute and verify sides', sub: '', svgAction: 'finalOk'}
-    ]
-  },
-
-  5: {
-    label: 'Basic fractions',
-    layering: [
-      {text: 'Identify numerator and denominator', sub: '', svgAction: 'showFrac'},
-      {text: 'Find common denominator to add/subtract', sub: '', svgAction: 'fracCommon'},
-      {text: 'Simplify the result', sub: '', svgAction: 'finalOk'}
-    ],
-    reverse: [
-      {text: 'Start from simplified fraction and recompose', sub: '', svgAction: 'finalOk'}
+    steps: [
+      {
+        text: 'Its essentially asking you to find the Highest Common Factor (HCF) of 84 and 108',
+        sub: '',
+        svgAction: 'showQuestion2',
+        imageUrl: 'https://i.postimg.cc/Ssxpbg3S/25.jpg'
+      },
+      {
+        text: 'List the factors of each number',
+        sub: 'Write down all the numbers that go into it exactly — without any remainders left.',
+        svgAction: 'isolate',
+        imageUrl: 'https://i.postimg.cc/jSTxk4x5/26.jpg'
+      },
+      {
+        text: 'Then do the same for your second number',
+        sub: '',
+        svgAction: 'finalOk',
+        imageUrl: 'https://i.postimg.cc/Bn3SwBSb/27.jpg'
+      },
+      {
+        text: 'Circle the numbers they both have',
+        sub: 'Look at both lists and circle the numbers that appear in both lists. These are your common factors.',
+        svgAction: 'verifyAnswer',
+        imageUrl: 'https://i.postimg.cc/bwPyF9ys/28.jpg'
+      },
+      {
+        text: 'Pick the biggest number',
+        sub: 'The biggest number that appears in both lists is your Highest Common Factor - This is the one we want.',
+        svgAction: 'showFinalAnswer',
+        imageUrl: 'https://i.postimg.cc/4xGfFQfY/29.jpg',
+        endSlide: {
+          text: 'The HCF of 84 and 108 is 12',
+          sub: 'Always check your work!'
+        }
+      }
     ]
   }
 };
@@ -2899,15 +3055,70 @@ function restoreSettings(){
 function loadCurrentData(){
   qTypeSelect.value = String(currentType);
   currentStep = 0;
+  window.__isShowingEndSlide = false;
   updateStepPanel();
-  resetSVG();
   updateQTypeButtons();
-  playCurrentStep();
+  
+  // Get elements
+  const steps = getSteps();
+  const stepImage = document.getElementById('stepImage');
+  const stepImageContainer = document.getElementById('stepImageContainer');
+  const demoSVG = document.getElementById('demoSVG');
+  
+  // STEP 1: Clear everything first
+  if (stepImage) {
+    stepImage.style.display = 'none';
+    stepImage.src = '';  // Clear old image
+  }
+  
+  // STEP 2: Reset SVG
+  resetSVG();
+  
+  // STEP 3: Force load the NEW image after a tiny delay to ensure browser updates
+  setTimeout(() => {
+    if (steps && steps.length > 0 && steps[0].imageUrl) {
+      if (stepImage && stepImageContainer) {
+        // Force display the image container
+        stepImageContainer.style.display = 'flex';
+        
+        // Load the NEW image URL
+        stepImage.src = steps[0].imageUrl;
+        stepImage.style.display = 'block';
+        
+        // Hide SVG
+        if (demoSVG) {
+          demoSVG.style.display = 'none';
+        }
+        
+        // Update text for step 1
+        const firstStep = steps[0];
+        if (firstStep) {
+          stepText.textContent = firstStep.text;
+          stepSub.textContent = firstStep.sub || '';
+        }
+      }
+    }
+    
+    // Play the step
+    playCurrentStep();
+  }, 10);  // Tiny 10ms delay to force browser refresh
 }
+    
+    // Backup fix - run on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const stepImage = document.getElementById('stepImage');
+  const demoSVG = document.getElementById('demoSVG');
+  
+  if (stepImage && demoSVG) {
+    // Make sure image container is always ready
+    stepImage.parentElement.style.display = 'flex';
+    demoSVG.style.display = 'none';
+  }
+});
 
 function getSteps(){
   const data = DATA[currentType];
-  return (data && data[currentMethod]) ? data[currentMethod] : [];
+  return (data && data.steps) ? data.steps : [];
 }
 
 function updateStepPanel(){
@@ -2939,19 +3150,58 @@ function playCurrentStep(){
   }
 
   const step = steps[currentStep];
+  
+  // Check if we're in "end slide" mode
+  const isEndSlide = step.endSlide && window.__isShowingEndSlide;
 
-stepText.textContent = step.text;
-stepSub.textContent = step.sub || '';(currentMethod === 'layering' ? 'Layering' : 'Reverse');
+  // HANDLE IMAGE DISPLAY - ALWAYS SHOW IMAGES
+  const stepImage = document.getElementById('stepImage');
+  const stepImageContainer = document.getElementById('stepImageContainer');
+  const demoSVG = document.getElementById('demoSVG');
+  
+  if (step.imageUrl) {
+    stepImage.src = step.imageUrl;
+    stepImage.style.display = 'block';
+    stepImageContainer.style.display = 'flex';
+    
+    // Make sure SVG is hidden when showing image
+    if (demoSVG) {
+      demoSVG.style.display = 'none';
+    }
+  } else {
+    // Only hide image if there's no imageUrl
+    stepImage.style.display = 'none';
+  }
+
+  // Show either the main step or the end slide
+  if (isEndSlide) {
+    stepText.textContent = step.endSlide.text;
+    stepSub.textContent = step.endSlide.sub || '';
+  } else {
+    stepText.textContent = step.text;
+    stepSub.textContent = step.sub || '';
+  }
 
   updateStepPanel();
-  announceForSR(`Step ${currentStep + 1} of ${steps.length}. ${step.text}`);
+  announceForSR(`Step ${currentStep + 1} of ${steps.length}. ${isEndSlide ? step.endSlide.text : step.text}`);
 
   performSvgAction(step.svgAction, () => {
+    if (step.endSlide && !window.__isShowingEndSlide) {
+      window.__canShowEndSlide = true;
+    }
+    
     showComingOverlay(1500, () => {
       if (autoplay){
-        currentStep++;
-        updateStepPanel();
-        setTimer(()=> playCurrentStep(), 350);
+        if (window.__canShowEndSlide && !window.__isShowingEndSlide) {
+          window.__isShowingEndSlide = true;
+          window.__canShowEndSlide = false;
+          setTimer(()=> playCurrentStep(), 350);
+        } else {
+          window.__isShowingEndSlide = false;
+          currentStep++;
+          updateStepPanel();
+          setTimer(()=> playCurrentStep(), 350);
+        }
       } else {
         arrowPulse();
       }
@@ -2987,6 +3237,14 @@ function resetSVG(){
   clearTimers();
   comingOverlay.classList.remove('show');
 
+  // DON'T hide the image when resetting - we want to keep it visible
+  const stepImage = document.getElementById('stepImage');
+  // Remove these lines that were hiding the image:
+  // if (stepImage) {
+  //   stepImage.style.display = 'none';
+  //   stepImage.src = '';
+  // }
+
   questionText.textContent = '';
   exprLine1.textContent = '';
   exprLine2.textContent = '';
@@ -3003,6 +3261,8 @@ function resetSVG(){
 
 function performSvgAction(actionName, callback){
   clearTimers();
+  
+  const stepImage = document.getElementById('stepImage');
 
   setTimer(()=> {
     dotA.classList.remove('visible','highlight','move-up');
@@ -3014,88 +3274,11 @@ function performSvgAction(actionName, callback){
     exprLine2.classList.remove('visible','highlight');
 
     switch(actionName){
-      case 'showQuestion':
-        questionText.textContent = 'Factorise: x² + 5x + 6';
-        exprLine1.textContent = '';
-        exprLine2.textContent = '';
-        setTimer(()=> {
-          document.getElementById('g-question').classList.add('visible');
-          if (callback) setTimer(callback, 650);
-        }, 80);
-      break;
-
-      case 'highlightFactors':
-        dotAText.textContent = '2';
-        rectBText.textContent = '3';
-        setTimer(()=> {
-          dotA.classList.add('visible','highlight','move-up');
-          dotAText.classList.add('visible','highlight');
-        }, 200);
-        setTimer(()=> {
-          rectB.classList.add('visible','highlight');
-          rectBText.classList.add('visible','highlight');
-        }, 600);
-        if (callback) setTimer(callback, 1200);
-      break;
-
-      case 'showFactors':
-        exprLine1.textContent = '(x + 2)';
-        exprLine2.textContent = '(x + 3)';
-        setTimer(()=> { exprLine1.classList.add('visible','highlight'); }, 200);
-        setTimer(()=> { exprLine2.classList.add('visible','highlight'); }, 600);
-        if (callback) setTimer(callback, 1200);
-      break;
-
-      case 'expandToCheck':
-        finalText.textContent = 'x² + 5x + 6';
-        setTimer(()=> { finalText.classList.add('visible','highlight'); if (callback) setTimer(callback,900); }, 200);
-      break;
-
-      case 'finalOk':
-        finalText.textContent = '✔ Solution OK';
-        setTimer(()=> { finalText.classList.add('visible','highlight'); if (callback) setTimer(callback,900); }, 200);
-      break;
-
-      case 'showQuestion2':
-        questionText.textContent = 'Solve: 3x + 6 = 15';
-        setTimer(()=> { document.getElementById('g-question').classList.add('visible'); if (callback) setTimer(callback,600); }, 100);
-      break;
-
-      case 'isolate':
-        exprLine1.textContent = '3x + 6 = 15 → 3x = 9';
-        setTimer(()=> { exprLine1.classList.add('visible','highlight'); if (callback) setTimer(callback,900); }, 200);
-      break;
-
-      case 'showRect':
-        questionText.textContent = 'Rectangle: base × height';
-        exprLine1.textContent = 'Area = b × h';
-        setTimer(()=> { exprLine1.classList.add('visible','highlight'); if (callback) setTimer(callback,900); }, 200);
-      break;
-
-      case 'parallelogram':
-        exprLine2.textContent = 'Parallelogram also: b × h (height = perpendicular)';
-        setTimer(()=> { exprLine2.classList.add('visible','highlight'); if (callback) setTimer(callback,1000); }, 200);
-      break;
-
-      case 'showQuestionPyth':
-        questionText.textContent = 'Right triangle: identify a, b, c';
-        setTimer(()=> { document.getElementById('g-question').classList.add('visible'); if (callback) setTimer(callback,700); }, 80);
-      break;
-
-      case 'pythSquares':
-        finalText.textContent = 'a² + b² = c²';
-        setTimer(()=> { finalText.classList.add('visible','highlight'); if (callback) setTimer(callback,900); }, 120);
-      break;
-
-      case 'showFrac':
-        questionText.textContent = 'Fraction: 3/4 + 1/6';
-        exprLine1.textContent = 'Find common denominator';
-        setTimer(()=> { exprLine1.classList.add('visible','highlight'); if (callback) setTimer(callback,900); }, 160);
-      break;
-
-      case 'fracCommon':
-        finalText.textContent = '3/4 + 1/6 = 11/12';
-        setTimer(()=> { finalText.classList.add('visible','highlight'); if (callback) setTimer(callback,900); }, 160);
+      case 'showFactorLists':
+      case 'highlightCommonFactors':
+      case 'showHCF':
+        // Image will be shown by playCurrentStep function
+        if (callback) setTimer(callback, 600);
       break;
 
       default:
@@ -3108,20 +3291,9 @@ function performSvgAction(actionName, callback){
 methodLayer.addEventListener('click', () => {
   currentMethod = 'layering';
   methodLayer.classList.add('active');
-  methodReverse.classList.remove('active');
   methodLayer.setAttribute('aria-selected', 'true');
-  methodReverse.setAttribute('aria-selected', 'false');
   loadCurrentData();
 });
-methodReverse.addEventListener('click', () => {
-  currentMethod = 'reverse';
-  methodReverse.classList.add('active');
-  methodLayer.classList.remove('active');
-  methodReverse.setAttribute('aria-selected', 'true');
-  methodLayer.setAttribute('aria-selected', 'false');
-  loadCurrentData();
-});
-
 autoplayToggle.addEventListener('click', () => {
   autoplay = !autoplay;
   autoplayToggle.textContent = `Autoplay: ${autoplay ? 'On' : 'Off'}`;
@@ -3131,23 +3303,37 @@ autoplayToggle.addEventListener('click', () => {
 
 nextBtn.addEventListener('click', () => {
   const steps = getSteps();
-  if (currentStep < steps.length - 1){
-    currentStep++;
-    updateStepPanel();
+  const currentStepData = steps[currentStep];
+  
+  // Check if current step has an end slide and we haven't shown it yet
+  if (currentStepData && currentStepData.endSlide && !window.__isShowingEndSlide) {
+    window.__isShowingEndSlide = true;
     playCurrentStep();
   } else {
-    currentStep = steps.length; updateStepPanel(); playCurrentStep();
-  }
-});
-prevBtn.addEventListener('click', () => {
-  if (currentStep > 0){
-    currentStep--;
-    updateStepPanel();
-    playCurrentStep();
+    // Move to next step
+    window.__isShowingEndSlide = false;
+    if (currentStep < steps.length - 1){
+      currentStep++;
+      updateStepPanel();
+      playCurrentStep();
+    } else {
+      currentStep = steps.length;
+      updateStepPanel();
+      playCurrentStep();
+    }
   }
 });
 replayBtn.addEventListener('click', () => {
   playCurrentStep();
+});
+    
+    prevBtn.addEventListener('click', () => {
+  if (currentStep > 0){
+    window.__isShowingEndSlide = false;  // Reset end slide flag when going back
+    currentStep--;
+    updateStepPanel();
+    playCurrentStep();
+  }
 });
 
 function generateQTypeButtons(){
@@ -3255,17 +3441,10 @@ function init(){
   restoreSettings();
   generateQTypeButtons();
 
-  if (currentMethod === 'reverse'){
-    methodReverse.classList.add('active');
-    methodLayer.classList.remove('active');
-    methodReverse.setAttribute('aria-selected', 'true');
-    methodLayer.setAttribute('aria-selected', 'false');
-  } else {
-    methodLayer.classList.add('active');
-    methodReverse.classList.remove('active');
-    methodLayer.setAttribute('aria-selected', 'true');
-    methodReverse.setAttribute('aria-selected', 'false');
-  }
+  // Always use layering method
+  currentMethod = 'layering';
+  methodLayer.classList.add('active');
+  methodLayer.setAttribute('aria-selected', 'true');
 
   autoplayToggle.textContent = `Autoplay: ${autoplay ? 'On' : 'Off'}`;
   autoplayToggle.setAttribute('aria-pressed', String(autoplay));
@@ -4305,4 +4484,5 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 </body>
+
 </html>
